@@ -17,7 +17,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
   const localWalletAddress = await localWallet.getAddress();
   console.log(`✨ Local wallet address: ${localWalletAddress}`);
 
-  // Create a smart wallet using the local wallet as the username (and the key)
+  // Create a smart wallet using the local wallet as the key
   const smartWallet = new SmartWallet({
     chain: activeChain,
     factoryAddress: TWFactoryAddress,
