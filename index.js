@@ -10,10 +10,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
 (async () => {
   // Create a local wallet to be a key for smart wallet
-  const localWallet = new LocalWallet({
-    chain: activeChain,
-    chains: [activeChain],
-  });
+  const localWallet = new LocalWallet();
 
   await localWallet.generate();
 
@@ -23,14 +20,12 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
   // Create a smart wallet using the local wallet as the username (and the key)
   const smartWallet = new SmartWallet({
     chain: activeChain,
-    chains: [activeChain],
     factoryAddress: TWFactoryAddress,
     thirdwebApiKey: TWApiKey,
     gasless: true,
   });
 
   await smartWallet.connect({
-    accountId: localWalletAddress,
     personalWallet: localWallet,
   });
 
@@ -43,8 +38,8 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
   try {
     // Claiming access NFT
-    const contract = await sdk.getContract(editionDropAddress, "edition-drop");
-    const claimTxn = await contract.claim(editionDropTokenId, 1);
+    const contract = await sdk.getContract(editionDropAddress);
+    const claimTxn = await contract.erc1155.claim(editionDropTokenId, 1);
     console.log(
       `🪄 Access NFT claimed! Txn hash: ${claimTxn.receipt.transactionHash}`
     );
