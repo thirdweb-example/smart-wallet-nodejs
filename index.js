@@ -1,6 +1,5 @@
 import { LocalWallet, SmartWallet } from "@thirdweb-dev/wallets";
 import {
-  TWApiKey,
   TWFactoryAddress,
   activeChain,
   editionDropAddress,
@@ -21,7 +20,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
   const smartWallet = new SmartWallet({
     chain: activeChain,
     factoryAddress: TWFactoryAddress,
-    thirdwebApiKey: TWApiKey,
+    secretKey: process.env.THIRDWEB_SECRET_KEY,
     gasless: true,
   });
 
@@ -34,7 +33,9 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
   // Instantiate thirdweb SDK with the smart wallet
   // (or you can get signer using smartWallet.getSigner())
-  const sdk = await ThirdwebSDK.fromWallet(smartWallet);
+  const sdk = await ThirdwebSDK.fromWallet(smartWallet, {
+    secretKey: process.env.THIRDWEB_SECRET_KEY,
+  });
 
   try {
     // Claiming access NFT
