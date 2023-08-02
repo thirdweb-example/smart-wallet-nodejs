@@ -8,8 +8,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@thirdweb-dev/sdk": "^3.10.12-nightly-77f0474b-20230503192637",
-    "@thirdweb-dev/wallets": "^0.2.17-nightly-77f0474b-20230503192637",
+    "@thirdweb-dev/sdk": "^3",
+    "@thirdweb-dev/wallets": "^0.2",
     "ethers": "5"
   }
 }
